@@ -1,0 +1,23 @@
+- name: Ping hosts
+  hosts: hosts
+  vars:
+    message: "Hi!"
+  tasks:
+    - name: Ping my hosts
+      ansible.builtin.ping:
+
+    - name: Print message
+      ansible.builtin.debug:
+        msg: Hello world
+
+    - name: Print all available facts
+      ansible.builtin.debug:
+        var: ansible_facts
+
+    - name: Print hostvars
+      debug:
+        msg: "{{ hostvars }}"
+
+    - name: Print message
+      debug:
+        msg: "{{ message }}"

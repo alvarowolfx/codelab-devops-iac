@@ -1,0 +1,36 @@
+- name: Run Reverse Proxy to apps
+  hosts: lb
+  become: true
+  vars:    
+    version: latest
+    container_name: caddy
+    container_image: caddy
+    app_node_host: "{{ groups['app'][0] }}"
+    host: nocodb.example.com
+  tasks:    
+    - name: Set up data folder
+      file:
+        path: /home/caddy
+        state: directory
+        mode: '0644'
+        
+    - name: Pull image
+      community.docker.docker_image:
+        name: "{{ container_image }}:{{ version }}"
+        source: pull
+
+    - name: Run containers
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ container_image }}"
+        command: "caddy reverse-proxy --from {{ host }} --to {{ app_node_host }}:8080"
+        restart: true
+        restart_policy: always
+        network_mode: host
+        volumes:
+          - /home/caddy/:/data/
+        exposed_ports:
+          - "80"
+        ports:
+          - "80:80"
+        state: started

@@ -1,0 +1,63 @@
+- name: Run Postgres DB
+  hosts: db
+  become: true
+  vars:
+    version: latest
+    container_name: postgres
+    container_image: postgres
+    default_password: supersecret    
+  tasks:    
+    - name: Set up data folder
+      file:
+        path: /home/postgres
+        state: directory
+        mode: '0644'
+
+    - name: Pull image
+      community.docker.docker_image:
+        name: "{{ container_image }}:{{ version }}"
+        source: pull
+
+    - name: Run containers
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ container_image }}"
+        env:
+          POSTGRES_PASSWORD: "{{ default_password }}"
+        volumes:
+          - /home/postgres/:/var/lib/postgresql/data
+        restart: true
+        restart_policy: always
+        network_mode: host
+        exposed_ports:
+          - "5432"
+        ports:
+          - "5432:5432"
+        state: started
+        
+    - name: Create a nocodb database 
+      community.postgresql.postgresql_db:
+        name: nocodb
+        login_host: localhost
+        login_password: "{{ default_password }}"
+        state: "present"
+
+    - name: Create a nocodb user 
+      community.postgresql.postgresql_user:
+        name: nocodb
+        password: nocodb
+        login_host: localhost
+        login_password: "{{ default_password }}"
+        state: "present"
+
+    - name: Grant access for nocodb user to nocodb database
+      community.postgresql.postgresql_privs:
+        database: nocodb
+        privs: ALL
+        type: schema
+        objs: public
+        role: nocodb
+        login_host: localhost
+        login_password: "{{ default_password }}"
+        state: "present"
+        

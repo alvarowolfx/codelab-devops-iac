@@ -1,0 +1,18 @@
+- name: Run Hello World Docker
+  hosts: hosts
+  become: true
+  vars:
+    version: latest
+    container_name: hello
+    container_image: hello-world
+  tasks:    
+    - name: Pull image
+      community.docker.docker_image:
+        name: "{{ container_image }}:{{ version }}"
+        source: pull
+
+    - name: Run containers
+      community.docker.docker_container:
+        name: "{{ container_name }}"
+        image: "{{ container_image }}"
+        state: started

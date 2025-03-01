@@ -1,0 +1,25 @@
+- name: Check running docker containers
+  hosts: hosts
+  become: true
+  vars:
+    container_name: hello
+  tasks:    
+    - name: List running containers
+      community.docker.docker_host_info:
+        containers_all: true
+        containers: true
+      register: result
+
+    - name: Show information
+      debug:
+        var: result.containers
+
+    - name: Get info on continaer
+      community.docker.docker_container_info:
+        name: "{{ container_name }}"
+      register: container_info
+
+    - name: Show logs
+      debug:
+        var: container_info.container
+      when: container_info.exists
