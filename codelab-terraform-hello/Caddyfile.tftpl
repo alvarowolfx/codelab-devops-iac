@@ -1,0 +1,13 @@
+:80 {
+
+    encode zstd gzip
+
+    reverse_proxy ${ servers } {
+
+        health_uri /
+        health_interval 5s
+        health_timeout 3s
+        health_status 200
+
+    }
+}
