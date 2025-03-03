@@ -1,0 +1,10 @@
+.terraform/
+.terraform.lock.hcl
+*.tfstate*
+nocodb/
+postgres/
+redpanda/
+grafana/
+caddy/
+config/
+bento/

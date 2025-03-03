@@ -1,0 +1,28 @@
+input:
+  label: "coinbase_kafka_ingestion"
+  kafka:
+    addresses: [${redpanda_address}]
+    topics: [${input_topic}]
+    consumer_group: "timescaledb_ingestor"
+  
+output:
+  label: "coinbase_kafka_output"
+  sql_insert:
+    driver: postgres
+    dsn: ${ connection_string }
+    table: "crypto_events"
+    init_statement: |
+      CREATE TABLE IF NOT EXISTS crypto_events (
+        timestamp TIMESTAMPTZ,
+        event_type TEXT,
+        data JSONB
+      );
+      CREATE INDEX IF NOT EXISTS idxgin ON crypto_events USING GIN (data);
+      SELECT create_hypertable('crypto_events', 'timestamp', if_not_exists := TRUE);
+    columns: [timestamp, event_type, data]
+    args_mapping: |
+      root = [
+        this.time.or(now()),
+        this.type,
+        json().string()
+      ]

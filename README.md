@@ -8,6 +8,7 @@ Ofertado no MBA em DevOps pela UFMT em 2025
 2. [Automação para criar VM para alunos no GCP](./codelab-ansible-terraform)
 3. [Terraform - Caddy como webserver e Load Balancer](./codelab-terraform-hello/)
 4. [Terraform - NocoDB com Postgres](./codelab-terraform-app/)
+5. [Terraform - Pipeline de processamento - Coinbase -> Kafka -> TimescaleDB](./codelab-terraform-stream/)
 
 #### Referências e outros links
 

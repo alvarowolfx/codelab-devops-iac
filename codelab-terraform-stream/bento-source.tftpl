@@ -1,0 +1,21 @@
+input:
+  label: "coinbase_source"
+  websocket:
+    url: wss://ws-feed-public.sandbox.exchange.coinbase.com
+    open_message_type: "text"
+    open_message: ${jsonencode(jsonencode({
+        "type": "subscribe",
+        "product_ids": ["ETH-BTC", "ETH-USD", "BTC-USD"],
+        "channels": [
+            "level2",
+            "heartbeat",
+            "ticker"
+        ]
+    }))}
+    auto_replay_nacks: true
+
+output:
+  label: "coinbase_kafka_output"
+  kafka:
+    addresses: [${redpanda_address}]
+    topic: ${output_topic}
