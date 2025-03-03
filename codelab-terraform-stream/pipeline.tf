@@ -46,5 +46,10 @@ resource "docker_container" "pipeline" {
     container_path = "/bento.yaml"
     host_path      = "${path.cwd}/config/bento-${each.value}.yaml"
   }
+
+  depends_on = [
+    local_file.bento_source_config,
+    local_file.bento_ingestor_config
+  ]
 }
 
