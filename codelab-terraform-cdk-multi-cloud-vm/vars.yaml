@@ -1,0 +1,7 @@
+students: ["alvaro", "luciana", "luis", "gabriel", "cesar", "elton", "paulo"]
+providers: ["google", "digitalocean"]
+#providers: ["google"]
+#shardingMethod: "round-robin"
+#shardingMethod: "hash"
+shardingMethod: "range"
+digitalOceanToken: ""
