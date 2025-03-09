@@ -21,6 +21,7 @@
   },
   "dependencies": {
     "@cdktf/provider-docker": "11.0.0",
+    "@cdktf/provider-local": "^10.1.1",
     "@cdktf/provider-postgresql": "11.4.0",
     "cdktf": "^0.20.11",
     "constructs": "^10.4.2",

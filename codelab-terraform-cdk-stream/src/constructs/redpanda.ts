@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
-import { Container } from "../../.gen/providers/docker/container";
-import { Image } from "../../.gen/providers/docker/image";
-import { Network } from "../../.gen/providers/docker/network";
+import { Container } from "@cdktf/provider-docker/lib/container";
+import { Image } from "@cdktf/provider-docker/lib/image";
+import { Network } from "@cdktf/provider-docker/lib/network";
 
 interface RedpandaConfig {
   version: string;

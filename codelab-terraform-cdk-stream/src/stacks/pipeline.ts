@@ -1,13 +1,13 @@
 import { Construct } from "constructs";
 import { TerraformStack } from "cdktf";
 
-import { DockerProvider } from "../../.gen/providers/docker/provider";
-import { LocalProvider } from "../../.gen/providers/local/provider";
-import { PostgresqlProvider } from "../../.gen/providers/postgresql/provider";
-import { Database } from "../../.gen/providers/postgresql/database";
-import { Extension } from "../../.gen/providers/postgresql/extension";
-import { Grant } from "../../.gen/providers/postgresql/grant";
-import { Role } from "../../.gen/providers/postgresql/role";
+import { DockerProvider } from "@cdktf/provider-docker/lib/provider";
+import { LocalProvider } from "@cdktf/provider-local/lib/provider";
+import { PostgresqlProvider } from "@cdktf/provider-postgresql/lib/provider";
+import { Database } from "@cdktf/provider-postgresql/lib/database";
+import { Extension } from "@cdktf/provider-postgresql/lib/extension";
+import { Grant } from "@cdktf/provider-postgresql/lib/grant";
+import { Role } from "@cdktf/provider-postgresql/lib/role";
 import {
   Pipeline,
   WebsocketInput,
@@ -15,7 +15,7 @@ import {
   KafkaInput,
   SqlInsertOutput,
 } from "../constructs/pipeline";
-import { Network } from "../../.gen/providers/docker/network";
+import { Network } from "@cdktf/provider-docker/lib/network";
 import { Redpanda } from "../constructs/redpanda";
 import { TimescaleDb } from "../constructs/timescaledb";
 

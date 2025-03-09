@@ -3,11 +3,7 @@
   "app": "npx ts-node main.ts",
   "projectId": "0d23e0ed-ecd9-448a-a6e2-f250853a11b6",
   "sendCrashReports": "false",
-  "terraformProviders": [
-    "local",
-    "kreuzwerker/docker@3.0.2",
-    "cyrilgdn/postgresql@1.25.0"
-  ],
+  "terraformProviders": [],
   "terraformModules": [],
   "context": {}
 }

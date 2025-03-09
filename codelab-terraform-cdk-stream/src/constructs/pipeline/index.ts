@@ -1,10 +1,10 @@
 import { Construct } from "constructs";
 import * as yaml from "yaml";
 
-import { Image } from "../../../.gen/providers/docker/image";
-import { File } from "../../../.gen/providers/local/file";
-import { Container } from "../../../.gen/providers/docker/container";
-import { Network } from "../../../.gen/providers/docker/network";
+import { Image } from "@cdktf/provider-docker/lib/image";
+import { File } from "@cdktf/provider-local/lib/file";
+import { Container } from "@cdktf/provider-docker/lib/container";
+import { Network } from "@cdktf/provider-docker/lib/network";
 
 
 export interface PipelineInput {

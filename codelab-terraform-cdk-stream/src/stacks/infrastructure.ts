@@ -1,7 +1,7 @@
 import { Construct } from "constructs";
 import { TerraformOutput, TerraformStack } from "cdktf";
-import { DockerProvider } from "../../.gen/providers/docker/provider";
-import { Network } from "../../.gen/providers/docker/network";
+import { DockerProvider } from "@cdktf/provider-docker/lib/provider";
+import { Network } from "@cdktf/provider-docker/lib/network";
 import { Redpanda } from "../constructs/redpanda";
 import { Grafana } from "../constructs/grafana";
 import { TimescaleDb } from "../constructs/timescaledb";
