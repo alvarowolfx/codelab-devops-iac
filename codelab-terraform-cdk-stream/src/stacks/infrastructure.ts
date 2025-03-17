@@ -6,7 +6,7 @@ import { Redpanda } from "../constructs/redpanda";
 import { Grafana } from "../constructs/grafana";
 import { TimescaleDb } from "../constructs/timescaledb";
 
-export interface InfraestrureStackConfig {
+export interface InfrastructureStackConfig {
     bentoVersion: string;
     dbPort: number;
     grafanaVersion: string;
@@ -15,12 +15,12 @@ export interface InfraestrureStackConfig {
     timescaledbVersion: string;
   }
   
-export class InfraestrureStack extends TerraformStack {
+export class InfrastructureStack extends TerraformStack {
     public readonly network: Network;
     public readonly redpanda: Redpanda;
     public readonly db: TimescaleDb;
 
-    constructor(scope: Construct, id: string, config: InfraestrureStackConfig) {
+    constructor(scope: Construct, id: string, config: InfrastructureStackConfig) {
       super(scope, id);
   
       new DockerProvider(this, "docker", {

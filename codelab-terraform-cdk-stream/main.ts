@@ -2,7 +2,7 @@ import {
   App,
 } from "cdktf";
 
-import { InfraestrureStack } from "./src/stacks/infrastructure";
+import { InfrastructureStack } from "./src/stacks/infrastructure";
 import { PipelineStack } from "./src/stacks/pipeline";
 
 const bentoVersion = "latest";
@@ -14,7 +14,7 @@ const redpandaVersion = "latest";
 const timescaledbVersion = "latest-pg15";
 
 const app = new App();
-const infra = new InfraestrureStack(app, "infra", {
+const infra = new InfrastructureStack(app, "infra", {
   bentoVersion,
   dbPort,
   grafanaVersion,
